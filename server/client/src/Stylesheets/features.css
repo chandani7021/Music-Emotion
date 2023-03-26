@@ -1,13 +1,13 @@
 @import url("../App.css");
 
 .icons-container {
-    display: grid;
+    display: flex;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .icons {
-    display: flex;
+    display: grid;
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
@@ -15,8 +15,9 @@
 }
 
 .icons_for-bookhub {
-    font-size: 2rem;
+    font-size: 3rem;
     color: var(--light-secondary-color);
+    padding: 1rem 2rem;
 }
 
 .port-shipping {
