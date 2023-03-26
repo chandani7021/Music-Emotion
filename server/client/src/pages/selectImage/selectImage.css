@@ -1,0 +1,87 @@
+.uploadInput {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.btn-upload {
+    padding: 0.5rem 1rem;
+    width: max-content;
+    border-radius: 5px;
+    box-shadow: 2px 2px 6px 1px var(--light-shadow-color);
+    transition: 0.2s ease;
+}
+
+.btn-capture{
+    padding: 0.5rem 2rem;
+}
+
+.btn-close-capture{
+    border-radius: 50%;
+}
+
+.btn-upload:hover {
+    transform: scale(1.05);
+}
+
+.mainContent {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 5px;
+}
+
+.border-box{
+    border: solid 4px var(--light-shadow-color);
+    min-height: 24rem;
+    border-radius: 1rem;
+    outline: dotted 2px var(--dark-secondary-color);
+}
+
+.imageHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.preview-img{
+    width: 24rem;
+    height: auto;
+    margin: 2rem auto;
+}
+
+.webcam-container{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.webcam-wrapper{
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.webcam-btns{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin: 1rem auto;
+}
+
+@media only screen and (max-width:800px) {
+    .mainContent {
+        display: grid;
+        grid-template-columns: 100%;
+    }
+}

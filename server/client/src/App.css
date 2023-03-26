@@ -1,0 +1,17 @@
+:root{
+    /* colors */
+
+    /* light-theme-colors */
+    --light-bg-color: #f2f6f7;
+    --light-primary-color: #353538;
+    --light-secondary-color: #4470b8;
+    --light-shadow-color: #284d8a;
+
+    /* dark-theme-colors */
+    --dark-bg-color: #353538;
+    --dark-primary-color: #f2f6f7;
+    --dark-secondary-color: #f5f2f3;
+    --dark-shadow-color: #595B83;
+    
+    --error-color: #FF1818;
+}

@@ -1,0 +1,228 @@
+.mainContainer {
+  min-height: 100vh;
+  flex-grow: 1;
+  z-index: 1;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 25px 20px;
+}
+
+.mainContainer .menuList {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 2rem;
+  padding: 15px 30px;
+  background: var(--dark-secondary-color);
+  border-radius: 1rem;
+}
+
+/* category bar */
+input[type="radio"] {
+  display: none;
+}
+
+.radio-label {
+  border: solid 2px transparent;
+  border-radius: 5px;
+  padding: 2px 4px;
+  cursor: pointer;
+  color: var(--light-primary-color);
+}
+
+.radio-label:hover {
+  border-color: var(--light-shadow-color);
+}
+
+.radio-checked {
+  color: var(--light-bg-color);
+  background-color: var(--light-secondary-color);
+}
+
+.empty-msg {
+  padding: 2rem;
+  min-height: 40vh;
+  display: grid;
+  place-items: center;
+  border-radius: 1rem;
+  margin: 1rem auto;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url("../assets/empty-msg-img.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--light-bg-color);
+  font-size: 1.8rem;
+  font-weight: 500;
+  font-style: italic;
+}
+
+.mainContainer p i {
+  font-size: 12px;
+  margin-right: 6px;
+}
+
+.mainContainer p span {
+  margin-left: 6px;
+}
+
+.AudioList {
+  padding: 10px 30px;
+}
+
+.AudioList .songsContainer {
+  height: 220px;
+  overflow-y: scroll;
+}
+
+.AudioList .songs {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 600;
+  width: 100%;
+  margin: 10px 0;
+  padding: 5px;
+  padding-bottom: 5px;
+}
+
+.AudioList .songs.active,
+.AudioList .songs.active .song .section .songName .songSpan {
+  color: var(--light-secondary-color) !important;
+}
+
+.AudioList .songs .count {
+  margin-right: 10px;
+}
+
+.AudioList .songs .song {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  border-bottom: 1px solid var(--dark-secondary-color);
+  padding-bottom: 5px;
+}
+
+.AudioList .songs .song .imgBox {
+  width: 45px;
+  min-width: 45px;
+  height: 45px;
+  border-radius: 0.5em;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+.AudioList .songs .song .imgBox img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.AudioList .songs .song .section {
+  width: 100%;
+}
+
+.AudioList .songs .song .section .songName {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+.AudioList .songs .song .section .songName .songSpan {
+  margin-left: 0;
+  font-size: 12px;
+}
+
+.AudioList .songs .song .section .hits {
+  display: flex;
+  margin-left: auto;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.AudioList .songs .song .section .hits p {
+  margin: 0 20px;
+}
+
+.AudioList .songs .song .section .hits p:nth-child(1) {
+  margin-left: 0;
+}
+
+.AudioList .songs .song .section .hits .favourite i {
+  color: var(--light-secondary-color) !important;
+  filter: drop-shadow(0px 0px 4px var(--light-secondary-color));
+}
+
+.AudioList .songs:hover,
+.AudioList .songs:hover .song .section .songName .songSpan {
+  color: var(--dark-shadow-color);
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.AudioList .songs:hover .song .imgBox img {
+  transform: scale(1.2);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.song-singer {
+  color: var(--light-secondary-color);
+  font-weight: 400;
+}
+
+@media only screen and (max-width: 800px) {
+
+  .mainContainer {
+    min-width: 380px;
+  }
+
+  .menuList ul li {
+    margin: 0 5px;
+  }
+
+  .mainContainer .menuList {
+    gap: 0.5rem;
+  }
+
+  .mainContainer .menuList ul li a {
+    font-size: 14px;
+  }
+
+  .mainContainer .menuList p {
+    font-size: 12px;
+  }
+
+  .mainContainer .menuList p i {
+    font-size: 10px;
+  }
+
+  .mainContainer .menuList p span {
+    margin-left: 0px;
+    font-size: 10px;
+    text-align: center;
+    display: block;
+  }
+
+  .mainContainer .menuList {
+    padding: 10px 15px;
+  }
+
+  .AudioList {
+    padding: 10px 5px;
+  }
+
+  .AudioList .songs .song .section {
+    flex-direction: column;
+  }
+
+  .AudioList .songs .song .section .songName {
+    width: 100%;
+  }
+
+  .AudioList .songs .song .section .hits {
+    margin-left: 0;
+    margin-top: 5px;
+    justify-content: space-between;
+  }
+}

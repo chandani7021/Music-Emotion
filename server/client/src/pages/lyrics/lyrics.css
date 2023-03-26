@@ -1,0 +1,35 @@
+.choice-container{
+    background-color: var(--light-shadow-color);
+    box-shadow: 6px 6px 8px 1px var(--dark-secondary-color);
+    transition: 0.3s ease-in-out;
+    text-align: center;
+}
+
+.choice-container:hover{
+    transform: scale(1.1);
+}
+
+.choice-container img{
+    height: auto;
+    margin: auto;
+}
+
+.choice-container h4{
+    text-align: center;
+    color: var(--light-bg-color);
+}
+
+.submit-button{
+    background-color: #9980f2;
+    height:50px;
+    width:200px;
+    margin-top: 50px;;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.text-area{
+   height:250px;
+   width:100%;
+   border-radius: 20px;
+}

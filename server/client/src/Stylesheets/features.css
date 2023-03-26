@@ -1,0 +1,44 @@
+@import url("../App.css");
+
+.icons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1.5rem;
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 3rem 3rem;
+}
+
+.icons_for-bookhub {
+    font-size: 2rem;
+    color: var(--light-secondary-color);
+}
+
+.port-shipping {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding-bottom: .5rem;
+}
+
+.facility_for-port {
+    font-size: 0.9rem;
+}
+
+.heading {
+    text-align: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.heading span {
+    font-size: 2rem;
+    padding: .5rem 2rem;
+    border: 2px solid var(--light-secondary-color);
+    border-radius: 6px;
+}

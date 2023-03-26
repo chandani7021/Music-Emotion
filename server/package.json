@@ -1,0 +1,50 @@
+{
+  "name": "emotunes-backend",
+  "version": "1.0.0",
+  "description": "EmoTunes - An emotion based music web app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Varun-28/EmoTunes.git"
+  },
+  "keywords": [
+    "music",
+    "react",
+    "mern",
+    "emotion-based"
+  ],
+  "author": "Varun Verma and Shilpe Saxena",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Varun-28/EmoTunes/issues"
+  },
+  "homepage": "https://github.com/Varun-28/EmoTunes#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@react-icons/all-files": "^4.1.0",
+    "axios": "^1.3.4",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-validator": "^6.14.0",
+    "face-api.js": "^0.22.2",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^6.2.3",
+    "react-alert": "^7.0.3",
+    "react-alert-template-basic": "^1.0.2",
+    "react-audio-player": "^0.17.0",
+    "react-icons": "^4.8.0",
+    "react-loader-spinner": "^5.3.4",
+    "react-router-dom": "^6.9.0",
+    "react-scripts": "^5.0.1",
+    "react-webcam": "^7.0.1"
+  }
+}
