@@ -125,6 +125,44 @@ def bynontranslating():
         #return my_prediction
 
 
+@app.route('/test',methods=['POST']) 
+def test_model():
+    path = joblib.load('../server/SER_model.h5')
+    filee = request.files['audioFile']
+    return filee
+    loaded_model = None
+
+    def load_model():
+        loaded_model = keras.models.load_model(path)
+        return loaded_model.summary()
+
+    def makepredictions():
+        data, sampling_rate = librosa.load(filee)
+        mfccs = np.mean(librosa.feature.mfcc(y=data, sr=sampling_rate, n_mfcc=40).T, axis=0)
+        x = np.expand_dims(mfccs, axis=1)
+        x = np.expand_dims(x, axis=0)
+        predictions = (loaded_model.predict(x) > 0.5).astype("int32")
+        return (convertclasstoemotion(predictions))
+    
+    def convertclasstoemotion(pred):  
+        label_conversion = {'0': 'neutral',
+                            '1': 'calm',
+                            '2': 'happy',
+                            '3': 'sad',
+                            '4': 'angry',
+                            '5': 'fearful',
+                            '6': 'disgust',
+                            '7': 'surprised'}
+      
+        for key, value in label_conversion.items():
+            if (int(key) == np.where(pred == 1)[1][0]).any():    
+                label = value
+        return label
+    
+    load_model()
+    return (makepredictions()) 
+
+
 # #to handle the behavior of a non-english song
 # @app.route('/translator',methods=['GET','POST']) 
 # def bytranslating():

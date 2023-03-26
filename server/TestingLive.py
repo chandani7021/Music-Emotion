@@ -1,10 +1,19 @@
 """
 This file can be used to try a live prediction. 
 """
-
+from flask import Flask, render_template, redirect, url_for, request,json
+from flask_cors import CORS, cross_origin
+import requests as rq
+from flask_wtf import Form
+from wtforms import RadioField
+from wtforms import validators, ValidationError
 import keras
 import numpy as np
 import librosa
+
+app = Flask(__name__)
+app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
 
 class livePredictions:
     """
@@ -62,7 +71,8 @@ class livePredictions:
 #from the RAVDESS dataset you want to use for the prediction,
 # Below, I have used a neutral file: the prediction made is neutral.
 
-pred = livePredictions(path='./SER_model.h5',file='./Taki-Taki(PaglaSongs).wav')
+pred = livePredictions(path='/content/SER_model.h5',file='/content/16b10Wb.wav')
 
 pred.load_model()
 pred.makepredictions()
+
