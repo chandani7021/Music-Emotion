@@ -6,7 +6,8 @@ import "./audio.css";
 import { useAlert } from "react-alert";
 import { useSong } from "../../Context/songDataContext/song-context";
 import { useNavigate } from "react-router-dom";
-import Webcam from "react-webcam";
+
+import axios from "axios";
 
 function Audio() {
   // const alert = useAlert();
@@ -17,21 +18,28 @@ function Audio() {
   const [audioFile, setAudioFile] = useState();
   const fileInputRef = useRef();
   // const navigate = useNavigate();
+
   async function get_info() {
     const formData = new FormData();
     formData.append("audioFile", audioFile);
     // return formData;
-    fetch("http://192.168.0.114:5000/test", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        // Handle any errors here
-        console.log(error.message);
-      });
+    try {
+      const resp = await axios.post("/test", { audioFile });
+      console.log(resp.data);
+    } catch (e) {
+      throw console.log(e);
+    }
+    // fetch("http://192.168.0.114:5000/test", {
+    //   method: "POST",
+    //   body: formData,
+    // })
+    //   .then((response) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     // Handle any errors here
+    //     console.log(error.message);
+    //   });
   }
 
   // // when audio file is uploaded
@@ -42,7 +50,7 @@ function Audio() {
     if (files.length > 0) {
       const url = URL.createObjectURL(files[0]);
       //   console.log(url);
-      setAudioFile(url);
+      setAudioFile(files[0]);
     } else {
       //   setImageURL(null);
       console.log("No file");

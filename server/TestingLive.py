@@ -67,9 +67,7 @@ class livePredictions:
                 label = value
         return label
 
-# Here you can replace path and file with the path of your model and of the file 
-#from the RAVDESS dataset you want to use for the prediction,
-# Below, I have used a neutral file: the prediction made is neutral.
+
 
 pred = livePredictions(path='/content/SER_model.h5',file='/content/16b10Wb.wav')
 

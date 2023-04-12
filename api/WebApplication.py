@@ -129,6 +129,7 @@ def bynontranslating():
 def test_model():
     path = joblib.load('../server/SER_model.h5')
     filee = request.files['audioFile']
+    filee.save(secure_filename(filee.filename))
     return filee
     loaded_model = None
 
