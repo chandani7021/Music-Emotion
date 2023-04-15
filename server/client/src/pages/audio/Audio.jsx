@@ -3,9 +3,8 @@ import { LoaderAnimation } from "../../components/LoaderAnimation";
 import { useTheme } from "../../Context/theme-context.js";
 import * as faceapi from "face-api.js";
 import "./audio.css";
-import { useAlert } from "react-alert";
-import { useSong } from "../../Context/songDataContext/song-context";
-import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAlignCenter, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 import axios from "axios";
 
@@ -14,7 +13,7 @@ function Audio() {
   const { theme } = useTheme();
   // const [isModelLoading, setIsModelLoading] = useState(false);
   // const [imageURL, setImageURL] = useState(null);
-  const [results, setResults] = useState("");
+  const [results, setResults] = useState(null);
   const [audioFile, setAudioFile] = useState();
   const fileInputRef = useRef();
   // const navigate = useNavigate();
@@ -24,22 +23,12 @@ function Audio() {
     formData.append("audioFile", audioFile);
     // return formData;
     try {
-      const resp = await axios.post("/test", { audioFile });
+      const resp = await axios.post("/audio-predict", formData);
       console.log(resp.data);
+      setResults(resp.data);
     } catch (e) {
       throw console.log(e);
     }
-    // fetch("http://192.168.0.114:5000/test", {
-    //   method: "POST",
-    //   body: formData,
-    // })
-    //   .then((response) => {
-    //     console.log(response);
-    //   })
-    //   .catch((error) => {
-    //     // Handle any errors here
-    //     console.log(error.message);
-    //   });
   }
 
   // // when audio file is uploaded
@@ -90,20 +79,12 @@ function Audio() {
       </div>
       <div className="mainWrapper">
         <div className="mainContent p-8">
-          <div className="imageHolder p-4 border-box text-center">
-            <h4 className="p-2 text-2xl underline">Preview</h4>
-            {/* {audioFile && ( */}
-            {/* <img
-								// src={audioFile}
-								// className="preview-img"
-								// alt="Upload Preview"
-								// crossOrigin="anonymous"
-								// ref={imageRef}//audioref
-							/> */}
-            {/* )} */}
-            {/* {imageURL && ( */}
+          <div className="imageHolder flex flex-col p-4 border-box text-center">
+            <h4 className="text-2xl font-medium">
+              Detect Mood of Audio <FontAwesomeIcon icon={faArrowRight} />
+            </h4>
             <button
-              className="button btn-upload mt-2 mx-auto"
+              className="center button btn-upload mt-4"
               onClick={get_info}
               style={{
                 backgroundColor: `${theme.mode.secondaryColor}`,
@@ -116,18 +97,22 @@ function Audio() {
           </div>
           <div className="resultsHolder p-4 border-box">
             <h4 className="text-center p-2 text-2xl underline">Output</h4>
-            {/* {results.length !== 0 && ( */}
+
             <div className=" flex flex-col items-center justify-center mt-4">
-              <span className="text-2xl font-bold my-12">
-                {/*{expressionResult[results]} ````output from flask */}
-              </span>
+              <div
+                className="text-2xl font-bold my-12"
+                style={{
+                  color: "#0f0f0f",
+                  fontSize: 20,
+                }}
+              >
+                {results}
+              </div>
+              {/* <p style={{ color: "#000" }}></p> */}
             </div>
-            {/* )} */}
           </div>
         </div>
       </div>
-
-      {/* 	{isModelLoading && <LoaderAnimation />} */}
     </div>
   );
 }

@@ -8,20 +8,14 @@ import { useEffect } from "react";
 import axios from "axios";
 
 function Lyrics() {
-  {
-    /* trying react flask connection here if not work omit before return from here*/
-  }
-
   const { theme } = useTheme();
   const [lyrics, setLyrics] = useState("You're the light, you're the night");
   let expressionResult = ["Happy 😀", "Sad 😔"];
 
   const [percent, setPercent] = useState(null);
   const [emoji, setEmoji] = useState(null);
-  async function fetch_emoji() {
-    // const result = await axios.post("http://127.0.0.1:5000/english/",{lyrics:"You're the light, you're the night"})
-    // console.log(result.data)
 
+  async function fetch_emoji() {
     try {
       const resp = await axios.post("/english", { lyrics });
       // console.log(resp.data);

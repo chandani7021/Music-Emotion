@@ -9,6 +9,7 @@ from flask import Flask, render_template, redirect, url_for, request,json
 from flask_cors import CORS, cross_origin
 import requests as rq
 from flask_wtf import Form
+from werkzeug.utils import secure_filename
 from wtforms import RadioField
 from wtforms import validators, ValidationError
 #from sklearn.externals import joblib
@@ -18,9 +19,20 @@ import pandas as pd
 from nltk.corpus import stopwords
 # from google.cloud import translate
 from googletrans import Translator
+import keras
+import librosa
+import numpy as np
 import nltk
 import os
 import re
+
+
+path = os.getcwd()
+# file Upload
+UPLOAD_FOLDER = os.path.join(path, 'uploads')
+
+if not os.path.isdir(UPLOAD_FOLDER):
+    os.mkdir(UPLOAD_FOLDER)
 
 
 # #### Functions defined for web page
@@ -72,6 +84,8 @@ def classifier():
 app = Flask(__name__)
 app.config['CORS_HEADERS'] = 'Content-Type'
 CORS(app)
+
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 # @app.route('/')
 # def index():
@@ -125,24 +139,23 @@ def bynontranslating():
         #return my_prediction
 
 
-@app.route('/test',methods=['POST']) 
+@app.route('/audio-predict',methods=['POST']) 
 def test_model():
-    path = joblib.load('../server/SER_model.h5')
+    path = '../server/SER_model.h5'
     filee = request.files['audioFile']
-    filee.save(secure_filename(filee.filename))
-    return filee
-    loaded_model = None
+    filepath = os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(filee.filename))
+    filee.save(filepath)
 
     def load_model():
         loaded_model = keras.models.load_model(path)
-        return loaded_model.summary()
+        return loaded_model
 
-    def makepredictions():
-        data, sampling_rate = librosa.load(filee)
+    def makepredictions(model):
+        data, sampling_rate = librosa.load(filepath)
         mfccs = np.mean(librosa.feature.mfcc(y=data, sr=sampling_rate, n_mfcc=40).T, axis=0)
         x = np.expand_dims(mfccs, axis=1)
         x = np.expand_dims(x, axis=0)
-        predictions = (loaded_model.predict(x) > 0.5).astype("int32")
+        predictions = (model.predict(x) > 0.5).astype("int32")
         return (convertclasstoemotion(predictions))
     
     def convertclasstoemotion(pred):  
@@ -160,8 +173,8 @@ def test_model():
                 label = value
         return label
     
-    load_model()
-    return (makepredictions()) 
+    
+    return (makepredictions(load_model())) 
 
 
 # #to handle the behavior of a non-english song
