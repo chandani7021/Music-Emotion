@@ -17,7 +17,7 @@ Also, The system can predict the mood of song based on the audio as well as lyri
 Clone the project
 
 ```bash
-  git clone https://github.com/chandani7021/Stock-Price-Prediction.git
+  https://github.com/chandani7021/Music-Emotion.git
 ```
 
 Go to the project directory
